@@ -7,18 +7,18 @@
 
 HX711 hx711(D2, D3, 1);  // (DT , SCK, gain= 1|3) de HX711
 
-float p = 0;             // Peso
-float b = 0;             // Corrige la medición del sensor a un valor de 0
-float m = 2215.05;          // Pendiente obtenida de una masa conocida. Ajusta m para calibrar.
-int   n = 10;
+float p;                                                             // masa en gramos
+float b = 0;                                            // valor inicial en y = m x +b
+float m = 2215.05;                                         // pendiente en y = m x + b
+int   n = 10;                                                // mediciones a promediar
 
 void setup()
   {
   Serial.begin(9600);
   Serial.println("Iniciando báscula m(g) :) ");
-  for (int i=0; i<7;  i++) { hx711.read(); } // Mediciones erroneas mientras se inicia el sensor
-  for (int i=0; i<10; i++) { b = b + hx711.read();}
-  b = b/10;                                  // Se promedia el valor de b para reducir el error
+  for (int i=0; i<7;  i++) { hx711.read(); }        // ignorar las primeras mediciones
+  for (int i=0; i<10; i++) { b = b + hx711.read();}                    // se obtiene b
+  b = b/10;
   }
 
 void loop()
