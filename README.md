@@ -1,5 +1,5 @@
 # HX711
 
+https://es.overleaf.com/read/tdszxygbwjrc
 
-
-Una celda de carga se usa para medir la fuerza aplicada 
+Usa una celda de carga para medir fuerzas
